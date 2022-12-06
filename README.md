@@ -1,5 +1,3 @@
-# Credit-Fraud-Detection
-
 # Credit Fraud Detection on Highly Skewed Data (99.83% VS 0.17%)
 
 
@@ -1477,18 +1475,25 @@ plt.show()
     
 ![output_34_0](https://user-images.githubusercontent.com/50436546/205793169-12ee70fd-e06b-4af5-a449-7e9d07a2ee1a.png)
 
+### Classifiers (UnderSampling):
 
-Classifiers (UnderSampling):
-In this section we will train four types of classifiers and decide which classifier will be more effective in detecting fraud transactions. Before we have to split our data into training and testing sets and separate the features from the labels.
-Summary:
-Logistic Regression classifier is more accurate than the other three classifiers in most cases. (We will further analyze Logistic Regression)
-GridSearchCV is used to determine the paremeters that gives the best predictive score for the classifiers.
-Logistic Regression has the best Receiving Operating Characteristic score (ROC), meaning that LogisticRegression pretty accurately separates fraud and non-fraud transactions.
-Learning Curves:
-The wider the gap between the training score and the cross validation score, the more likely your model is overfitting (high variance).
-If the score is low in both training and cross-validation sets this is an indication that our model is underfitting (high bias)
-Logistic Regression Classifier shows the best score in both training and cross-validating sets.
+In this section we will train four types of classifiers and decide which classifier will be more effective in <b>detecting fraud transactions</b>. Before we have to split our data into training and testing sets and separate the features from the labels.
 
+### Summary:
+
+- <b>Logistic Regression </b>classifier is more accurate than the other three classifiers in most cases. (We will further analyze Logistic Regression)
+
+- <b>GridSearchCV </b>is used to determine the paremeters that gives the best predictive score for the classifiers.
+
+- <b>Logistic Regression has the best Receiving Operating Characteristic score (ROC)</b>, meaning that LogisticRegression pretty accurately separates <b>fraud</b> and <b>non-fraud</b> transactions.
+
+### Learning Curves:
+
+- The <b>wider the gap </b>between the training score and the cross validation score, the more likely your model is <b>overfitting (high variance)</b>.
+
+- If the score is low in both training and cross-validation sets this is an indication that our model is <b>underfitting (high bias)</b>
+
+- <b>Logistic Regression Classifier</b> shows the best score in both training and cross-validating sets.
 
 ```python
 # Undersampling before cross validating (prone to overfit)
