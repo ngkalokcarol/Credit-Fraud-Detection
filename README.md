@@ -1870,20 +1870,23 @@ plt.show()
 ![output_49_0](https://user-images.githubusercontent.com/50436546/205793231-d71b7fbd-c3b9-49e9-afde-ca486bc4bce9.png)
 
 
-A Deeper Look into LogisticRegression:
-In this section we will ive a deeper look into the logistic regression classifier.
+### A Deeper Look into LogisticRegression:
+In this section we will ive a deeper look into the <b>logistic regression classifier</b>.
 
-Terms:
-True Positives: Correctly Classified Fraud Transactions
-False Positives: Incorrectly Classified Fraud Transactions
-True Negative: Correctly Classified Non-Fraud Transactions
-False Negative: Incorrectly Classified Non-Fraud Transactions
-Precision: True Positives/(True Positives + False Positives)
-Recall: True Positives/(True Positives + False Negatives)
-Precision as the name says, says how precise (how sure) is our model in detecting fraud transactions while recall is the amount of fraud cases our model is able to detect.
-Precision/Recall Tradeoff: The more precise (selective) our model is, the less cases it will detect. Example: Assuming that our model has a precision of 95%, Let's say there are only 5 fraud cases in which the model is 95% precise or more that these are fraud cases. Then let's say there are 5 more cases that our model considers 90% to be a fraud case, if we lower the precision there are more cases that our model will be able to detect.
-Summary:
-Precision starts to descend between 0.90 and 0.92 nevertheless, our precision score is still pretty high and still we have a descent recall score.
+#### Terms:
+
+- <b>True Positives:</b> Correctly Classified Fraud Transactions
+- <b>False Positives:</b> Incorrectly Classified Fraud Transactions
+- <b>True Negative:</b> Correctly Classified Non-Fraud Transactions
+- <b>False Negative:</b> Incorrectly Classified Non-Fraud Transactions
+- <b>Precision:</b> True Positives/(True Positives + False Positives)
+- <b>Recall:</b> True Positives/(True Positives + False Negatives)
+- <b>Precision</b> as the name says, says how precise (how sure) is our model in detecting fraud transactions while recall is the amount of fraud cases our model is able to detect.
+
+- <b>Precision/Recall Tradeoff:</b> The more precise (selective) our model is, the less cases it will detect. Example: Assuming that our model has a precision of 95%, Let's say there are only 5 fraud cases in which the model is 95% precise or more that these are fraud cases. Then let's say there are 5 more cases that our model considers 90% to be a fraud case, if we lower the precision there are more cases that our model will be able to detect.
+
+#### Summary:
+- <b>Precision starts to descend</b> between 0.90 and 0.92 nevertheless, our precision score is still pretty high and still we have a descent recall score.
 
 
 ```python
@@ -2003,25 +2006,35 @@ plt.title('UnderSampling Precision-Recall curve: \n Average Precision-Recall Sco
     
 ![output_56_1](https://user-images.githubusercontent.com/50436546/205793312-2ba26e48-d8a5-4171-8cad-9250bd47c36e.png)
 
+### SMOTE Technique (Over-Sampling):
 
-SMOTE Technique (Over-Sampling):
-<img src="https://raw.githubusercontent.com/rikunert/SMOTE_visualisation/master/SMOTE_R_visualisation_3.png", width=800> SMOTE stands for Synthetic Minority Over-sampling Technique. Unlike Random UnderSampling, SMOTE creates new synthetic points in order to have an equal balance of the classes. This is another alternative for solving the "class imbalance problems".
+![image](https://user-images.githubusercontent.com/50436546/205796290-d8c4a3b1-c5d1-4ea3-9a7b-beaf16c61fce.png)
+
+<i>Photo credit: https://rikunert.com/SMOTE_explained</i>
+
+<b>SMOTE</b> stands for Synthetic Minority Over-sampling Technique. Unlike Random UnderSampling, SMOTE creates new synthetic points in order to have an equal balance of the classes. This is another alternative for solving the "class imbalance problems".
 
 
-Understanding SMOTE:
+#### Understanding SMOTE:
 
-Solving the Class Imbalance: SMOTE creates synthetic points from the minority class in order to reach an equal balance between the minority and majority class.
-Location of the synthetic points: SMOTE picks the distance between the closest neighbors of the minority class, in between these distances it creates synthetic points.
-Final Effect: More information is retained since we didn't have to delete any rows unlike in random undersampling.
-Accuracy || Time Tradeoff: Although it is likely that SMOTE will be more accurate than random under-sampling, it will take more time to train since no rows are eliminated as previously stated.
-Cross Validation Overfitting Mistake:
-Overfitting during Cross Validation:
-In our undersample analysis I want to show you a common mistake I made that I want to share with all of you. It is simple, if you want to undersample or oversample your data you should not do it before cross validating. Why because you will be directly influencing the validation set before implementing cross-validation causing a "data leakage" problem. In the following section you will see amazing precision and recall scores but in reality our data is overfitting!
+- Solving the Class Imbalance: SMOTE creates synthetic points from the minority class in order to reach an equal balance between the minority and majority class.
+
+- Location of the synthetic points: SMOTE picks the distance between the closest neighbors of the minority class, in between these distances it creates synthetic points.
+
+- Final Effect: More information is retained since we didn't have to delete any rows unlike in random undersampling.
+
+- Accuracy || Time Tradeoff: Although it is likely that SMOTE will be more accurate than random under-sampling, it will take more time to train since no rows are eliminated as previously stated.
+
+### Cross Validation Overfitting Mistake:
+
+#### Overfitting during Cross Validation:
+
+In our undersample analysis I want to show you a common mistake I made that I want to share with all of you. It is simple, if you want to undersample or oversample your data you should not do it before cross validating. Why because you will be directly influencing the validation set before implementing cross-validation causing a "data leakage" problem. <b>In the following section you will see amazing precision and recall scores but in reality our data is overfitting!</b>
 
 #### The Wrong way: 
 <i>Photo credit: https://www.marcoaltini.com/blog/dealing-with-imbalanced-data-undersampling-oversampling-and-proper-cross-validation </i>
 
-![image.png](attachment:image.png)
+![image](https://user-images.githubusercontent.com/50436546/205796403-c3478b89-00f3-436a-9a83-8b5db6cdaaf3.png)
 
 
 As mentioned previously, if we get the minority class ("Fraud) in our case, and create the synthetic points before cross validating we have a certain influence on the "validation set" of the cross validation process. Remember how cross validation works, let's assume we are splitting the data into 5 batches, 4/5 of the dataset will be the training set while 1/5 will be the validation set. The test set should not be touched! For that reason, we have to do the creation of synthetic datapoints "during" cross-validation and not before, just like below:
@@ -2029,7 +2042,7 @@ As mentioned previously, if we get the minority class ("Fraud) in our case, and 
 #### The Right way:
 <i>Photo credit: https://www.marcoaltini.com/blog/dealing-with-imbalanced-data-undersampling-oversampling-and-proper-cross-validation </i>
 
-![image.png](attachment:image.png)
+![image](https://user-images.githubusercontent.com/50436546/205796494-e8fddc0e-0d34-44c8-93f1-152e472ab6c9.png)
 
 As you see above, SMOTE occurs "during" cross validation and not "prior" to the cross validation process. Synthetic data are created only for the training set without affecting the validation set.
 
@@ -2191,27 +2204,29 @@ print("Fitting oversample data took :{} sec".format(t1 - t0))
     Fitting oversample data took :2.231048107147217 sec
 
 
-Test Data with Logistic Regression:
+### Test Data with Logistic Regression:
 
-Confusion Matrix:
-Positive/Negative: Type of Class (label) ["No", "Yes"] True/False: Correctly or Incorrectly classified by the model.
+#### Confusion Matrix:
 
-
-True Negatives (Top-Left Square): This is the number of correctly classifications of the "No" (No Fraud Detected) class.
+- <b>Positive/Negative:</b> Type of Class (label) ["No", "Yes"] <b>True/False:</b> Correctly or Incorrectly classified by the model.
 
 
-False Negatives (Top-Right Square): This is the number of incorrectly classifications of the "No"(No Fraud Detected) class.
+- <b>True Negatives (Top-Left Square):</b> This is the number of <b>correctly</b> classifications of the "No" (No Fraud Detected) class.
 
 
-False Positives (Bottom-Left Square): This is the number of incorrectly classifications of the "Yes" (Fraud Detected) class
+- <b>False Negatives (Top-Right Square):</b> This is the number of <b>incorrectly</b> classifications of the "No"(No Fraud Detected) class.
 
 
-True Positives (Bottom-Right Square): This is the number of correctly classifications of the "Yes" (Fraud Detected) class.
+- <b>False Positives (Bottom-Left Square):</b> This is the number of <b>incorrectly</b> classifications of the "Yes" (Fraud Detected) class
 
-Summary:
-Random UnderSampling: We will evaluate the final performance of the classification models in the random undersampling subset. Keep in mind that this is not the data from the original dataframe.
-Classification Models: The models that performed the best were logistic regression and support vector classifier (SVM)
 
+- <b>True Positives (Bottom-Right Square):</b> This is the number of <b>correctly</b> classifications of the "Yes" (Fraud Detected) class.
+
+#### Summary:
+
+- <b>Random UnderSampling:</b> We will evaluate the final performance of the classification models in the random undersampling subset. <b>Keep in mind that this is not the data from the original dataframe.</b>
+
+- <b>Classification Models:</b> The models that performed the best were <b>logistic regression and support vector classifier (SVM)</b>
 
 ```python
 from sklearn.metrics import confusion_matrix
@@ -2390,26 +2405,33 @@ final_df
 </table>
 </div>
 
+### Neural Networks Testing Random UnderSampling Data vs OverSampling (SMOTE):
 
-
-Neural Networks Testing Random UnderSampling Data vs OverSampling (SMOTE):
 In this section we will implement a simple Neural Network (with one hidden layer) in order to see which of the two logistic regressions models we implemented in the (undersample or oversample(SMOTE)) has a better accuracy for detecting fraud and non-fraud transactions.
 
 
-Our Main Goal:
+#### Our Main Goal:
+
 Our main goal is to explore how our simple neural network behaves in both the random undersample and oversample dataframes and see whether they can predict accuractely both non-fraud and fraud cases. Why not only focus on fraud? Imagine you were a cardholder and after you purchased an item your card gets blocked because the bank's algorithm thought your purchase was a fraud. That's why we shouldn't emphasize only in detecting fraud cases but we should also emphasize correctly categorizing non-fraud transactions.
 
-The Confusion Matrix:
+#### The Confusion Matrix:
 Here is again, how the confusion matrix works:
 
-Upper Left Square: The amount of correctly classified by our model of no fraud transactions.
-Upper Right Square: The amount of incorrectly classified transactions as fraud cases, but the actual label is no fraud .
-Lower Left Square: The amount of incorrectly classified transactions as no fraud cases, but the actual label is fraud .
-Lower Right Square: The amount of correctly classified by our model of fraud transactions.
-Summary (Keras || Random UnderSampling):
-Dataset: In this final phase of testing we will fit this model in both the random undersampled subset and oversampled dataset (SMOTE) in order to predict the final result using the original dataframe testing data.
-Neural Network Structure: As stated previously, this will be a simple model composed of one input layer (where the number of nodes equals the number of features) plus bias node, one hidden layer with 32 nodes and one output node composed of two possible results 0 or 1 (No fraud or fraud).
-Other characteristics: The learning rate will be 0.001, the optimizer we will use is the AdamOptimizer, the activation function that is used in this scenario is "Relu" and for the final outputs we will use sparse categorical cross entropy, which gives the probability whether an instance case is no fraud or fraud (The prediction will pick the highest probability between the two.)
+- Upper Left Square: The amount of correctly classified by our model of no fraud transactions.
+
+- Upper Right Square: The amount of incorrectly classified transactions as fraud cases, but the actual label is no fraud .
+
+- Lower Left Square: The amount of incorrectly classified transactions as no fraud cases, but the actual label is fraud .
+
+- Lower Right Square: The amount of correctly classified by our model of fraud transactions.
+
+#### Summary (Keras || Random UnderSampling):
+
+- Dataset: In this final phase of testing we will fit this model in both the random undersampled subset and oversampled dataset (SMOTE) in order to predict the final result using the original dataframe testing data.
+
+- Neural Network Structure: As stated previously, this will be a simple model composed of one input layer (where the number of nodes equals the number of features) plus bias node, one hidden layer with 32 nodes and one output node composed of two possible results 0 or 1 (No fraud or fraud).
+
+- Other characteristics: The learning rate will be 0.001, the optimizer we will use is the AdamOptimizer, the activation function that is used in this scenario is "Relu" and for the final outputs we will use sparse categorical cross entropy, which gives the probability whether an instance case is no fraud or fraud (The prediction will pick the highest probability between the two.)
 
 
 ```python
